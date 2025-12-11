@@ -1,23 +1,18 @@
-import { Twitter, Linkedin, Instagram, Mail, MapPin, Phone, Heart } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
+import { Twitter, Linkedin, Instagram, Mail, MapPin, Heart } from "lucide-react";
 
 const footerLinks = {
   product: [
-    { label: "How It Works", href: "#how-it-works" },
-    { label: "Features", href: "#features" },
-    { label: "Beta Access", href: "#beta" },
-    { label: "Pricing", href: "#" },
+    { label: "How It Works", href: "/#how-it-works", isHash: true },
+    { label: "Features", href: "/#features", isHash: true },
+    { label: "Beta Access", href: "/#beta", isHash: true },
   ],
   company: [
-    { label: "About Us", href: "#" },
-    { label: "Blog", href: "#" },
-    { label: "Careers", href: "#" },
-    { label: "Press Kit", href: "#" },
+    { label: "About Us", href: "/about", isHash: false },
   ],
   legal: [
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Service", href: "#" },
-    { label: "Cookie Policy", href: "#" },
-    { label: "Data Security", href: "#" },
+    { label: "Privacy Policy", href: "/privacy", isHash: false },
+    { label: "Terms of Service", href: "/terms", isHash: false },
   ],
 };
 
@@ -28,6 +23,18 @@ const socialLinks = [
 ];
 
 export function Footer() {
+  const location = useLocation();
+
+  const handleHashClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith("/#") && location.pathname === "/") {
+      e.preventDefault();
+      const element = document.querySelector(href.replace("/", ""));
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   return (
     <footer className="bg-charcoal text-primary-foreground">
       <div className="container">
@@ -36,12 +43,12 @@ export function Footer() {
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12">
             {/* Brand column */}
             <div className="col-span-2 md:col-span-4 lg:col-span-2">
-              <a href="#" className="flex items-center gap-2 mb-4">
+              <Link to="/" className="flex items-center gap-2 mb-4">
                 <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
                   <span className="text-primary-foreground font-bold text-xl">P</span>
                 </div>
                 <span className="font-bold text-2xl">Purelytics</span>
-              </a>
+              </Link>
               <p className="text-primary-foreground/60 mb-6 max-w-sm leading-relaxed">
                 Empowering consumers with instant ingredient clarity. Scan, decode, and understand what's really in your products.
               </p>
@@ -86,6 +93,7 @@ export function Footer() {
                   <li key={link.label}>
                     <a
                       href={link.href}
+                      onClick={(e) => handleHashClick(e, link.href)}
                       className="text-sm text-primary-foreground/60 hover:text-primary transition-colors"
                     >
                       {link.label}
@@ -101,12 +109,12 @@ export function Footer() {
               <ul className="space-y-3">
                 {footerLinks.company.map((link) => (
                   <li key={link.label}>
-                    <a
-                      href={link.href}
+                    <Link
+                      to={link.href}
                       className="text-sm text-primary-foreground/60 hover:text-primary transition-colors"
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -118,12 +126,12 @@ export function Footer() {
               <ul className="space-y-3">
                 {footerLinks.legal.map((link) => (
                   <li key={link.label}>
-                    <a
-                      href={link.href}
+                    <Link
+                      to={link.href}
                       className="text-sm text-primary-foreground/60 hover:text-primary transition-colors"
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
