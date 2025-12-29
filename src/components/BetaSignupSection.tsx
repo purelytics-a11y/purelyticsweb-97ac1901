@@ -30,9 +30,7 @@ export function BetaSignupSection() {
   const handleCategoryChange = (categoryId: string, checked: boolean) => {
     setFormData((prev) => ({
       ...prev,
-      categories: checked
-        ? [...prev.categories, categoryId]
-        : prev.categories.filter((c) => c !== categoryId),
+      categories: checked ? [...prev.categories, categoryId] : prev.categories.filter((c) => c !== categoryId),
     }));
   };
 
@@ -83,72 +81,67 @@ export function BetaSignupSection() {
   };
 
   return (
-    <section id="beta" className="py-24 lg:py-32 bg-background relative overflow-hidden">
+    <section id="beta" className="py-20 lg:py-28 bg-background relative overflow-hidden">
       {/* Subtle ambient background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/[0.03] rounded-full blur-[100px]" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-soft-blue/[0.03] rounded-full blur-[100px]" />
+        <div className="absolute top-0 right-0 w-72 h-72 md:w-[400px] md:h-[400px] bg-secondary rounded-full blur-[100px] opacity-70" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 md:w-[350px] md:h-[350px] bg-secondary rounded-full blur-[100px] opacity-60" />
       </div>
-      
+
       <div className="container relative z-10">
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-xl mx-auto">
           {/* Section header */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            className="text-center mb-12"
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center mb-10"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/[0.08] border border-primary/20 text-primary font-medium text-sm mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary border border-border text-foreground font-medium text-xs sm:text-sm mb-5">
               <Sparkles className="w-4 h-4" />
               Limited beta spots available
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-5 tracking-[-0.02em]">
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl text-foreground mb-4">
               Join the early access list
             </h2>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Be among the first to experience ingredient transparency. Help us shape
-              the future of product safety.
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+              Be among the first to experience ingredient transparency. Help us shape the future of product safety.
             </p>
           </motion.div>
 
           {/* Form */}
           <motion.form
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
             onSubmit={handleSubmit}
-            className="bg-card rounded-3xl p-6 sm:p-8 lg:p-10 shadow-card border border-border/50"
+            className="bg-secondary/60 rounded-2xl sm:rounded-3xl p-5 sm:p-7 lg:p-8 border border-border"
           >
-            <div className="space-y-6">
+            <div className="space-y-5">
               {/* Name and Email row */}
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2.5">
-                    Name
-                  </label>
+                  <label className="block text-sm font-medium text-foreground mb-2">Name</label>
                   <Input
                     type="text"
                     placeholder="Your name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     required
-                    className="h-12 bg-secondary/50 border-border/50 focus:border-primary/50 transition-colors"
+                    className="h-11 bg-background border-border focus:border-primary/50 transition-colors"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2.5">
-                    Email
-                  </label>
+                  <label className="block text-sm font-medium text-foreground mb-2">Email</label>
                   <Input
                     type="email"
                     placeholder="you@example.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     required
-                    className="h-12 bg-secondary/50 border-border/50 focus:border-primary/50 transition-colors"
+                    className="h-11 bg-background border-border focus:border-primary/50 transition-colors"
                   />
                 </div>
               </div>
@@ -156,54 +149,48 @@ export function BetaSignupSection() {
               {/* Age and City row */}
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2.5">
-                    Age
-                  </label>
+                  <label className="block text-sm font-medium text-foreground mb-2">Age</label>
                   <Input
                     type="number"
                     placeholder="25"
                     value={formData.age}
                     onChange={(e) => setFormData({ ...formData, age: e.target.value })}
-                    className="h-12 bg-secondary/50 border-border/50 focus:border-primary/50 transition-colors"
+                    className="h-11 bg-background border-border focus:border-primary/50 transition-colors"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-2.5">
-                    City
-                  </label>
+                  <label className="block text-sm font-medium text-foreground mb-2">City</label>
                   <Input
                     type="text"
                     placeholder="Mumbai, Delhi, etc."
                     value={formData.city}
                     onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                    className="h-12 bg-secondary/50 border-border/50 focus:border-primary/50 transition-colors"
+                    className="h-11 bg-background border-border focus:border-primary/50 transition-colors"
                   />
                 </div>
               </div>
 
               {/* Categories */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-3">
+                <label className="block text-sm font-medium text-foreground mb-2.5">
                   Which categories interest you most?
                 </label>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-2">
                   {categories.map((category) => (
                     <label
                       key={category.id}
-                      className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border cursor-pointer transition-all duration-300 ${
+                      className={`flex items-center gap-2 px-3.5 py-2 rounded-xl border cursor-pointer transition-all duration-300 text-sm ${
                         formData.categories.includes(category.id)
                           ? "bg-primary/10 border-primary/50 text-primary"
-                          : "bg-secondary/50 border-border/50 hover:border-primary/30"
+                          : "bg-background border-border hover:border-primary/30"
                       }`}
                     >
                       <Checkbox
                         checked={formData.categories.includes(category.id)}
-                        onCheckedChange={(checked) =>
-                          handleCategoryChange(category.id, checked as boolean)
-                        }
+                        onCheckedChange={(checked) => handleCategoryChange(category.id, checked as boolean)}
                         className="sr-only"
                       />
-                      <span className="text-sm font-medium">{category.label}</span>
+                      <span className="font-medium">{category.label}</span>
                     </label>
                   ))}
                 </div>
@@ -211,32 +198,26 @@ export function BetaSignupSection() {
 
               {/* Frustration */}
               <div>
-                <label className="block text-sm font-medium text-foreground mb-2.5">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   What frustrates you most about ingredient labels?
                 </label>
                 <Textarea
                   placeholder="Tell us about your experience..."
                   value={formData.frustration}
                   onChange={(e) => setFormData({ ...formData, frustration: e.target.value })}
-                  rows={4}
-                  className="resize-none bg-secondary/50 border-border/50 focus:border-primary/50 transition-colors"
+                  rows={3}
+                  className="resize-none bg-background border-border focus:border-primary/50 transition-colors"
                 />
               </div>
 
               {/* Submit button */}
-              <Button
-                type="submit"
-                variant="hero"
-                size="xl"
-                className="w-full group"
-                disabled={isSubmitting}
-              >
+              <Button type="submit" className="w-full h-12 btn-primary group" disabled={isSubmitting}>
                 {isSubmitting ? (
                   "Joining..."
                 ) : (
                   <>
                     Join the Early Access List
-                    <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </>
                 )}
               </Button>

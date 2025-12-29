@@ -11,32 +11,34 @@ const badges = [
 
 export function TrustBadgesSection() {
   return (
-    <section className="py-16 lg:py-20 bg-background border-y border-border/60">
+    <section className="py-10 sm:py-14 lg:py-16 bg-background border-y border-border/60">
       <div className="container">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col items-center gap-8"
+          className="flex flex-col items-center gap-6 sm:gap-8"
         >
-          <p className="text-sm font-medium uppercase tracking-wider text-muted-foreground">
+          <p className="text-xs sm:text-sm font-medium uppercase tracking-wider text-muted-foreground text-center">
             Trusted by conscious shoppers
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 lg:gap-16">
+
+          {/* Mobile: 2-column grid; md+: inline flex */}
+          <div className="grid grid-cols-2 gap-4 sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-8 md:gap-x-10 lg:gap-x-14">
             {badges.map((badge, index) => (
               <motion.div
                 key={badge.label}
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.08 }}
-                className="flex items-center gap-3 group cursor-default"
+                transition={{ duration: 0.35, delay: index * 0.06 }}
+                className="flex items-center gap-2.5 group cursor-default"
               >
-                <div className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 bg-secondary border border-border">
-                  <badge.icon className="w-5 h-5 text-primary" />
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 bg-secondary border border-border">
+                  <badge.icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                 </div>
-                <span className="font-medium text-sm whitespace-nowrap transition-colors duration-300 text-foreground/80">
+                <span className="font-medium text-xs sm:text-sm whitespace-nowrap text-foreground/80">
                   {badge.label}
                 </span>
               </motion.div>
