@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { toast } from "sonner";
 
 const navLinks = [
   { href: "/#how-it-works", label: "Solution" },
@@ -37,6 +38,13 @@ export function Header() {
 
   const isHash = (href: string) => href.startsWith("/#");
 
+  const handleDownloadClick = () => {
+    toast("Coming soon", {
+      description: "Apply for beta access — we’ll invite you as spots open.",
+    });
+    setIsMobileMenuOpen(false);
+  };
+
   return (
     <header
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
@@ -47,7 +55,7 @@ export function Header() {
       }}
     >
       <nav className="container mx-auto flex items-center justify-between h-16 md:h-20">
-        <Link to="/" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2" onClick={() => window.scrollTo(0, 0)}>
           <span className="font-display text-2xl text-foreground">Purelytics</span>
         </Link>
 
@@ -81,9 +89,16 @@ export function Header() {
         </div>
 
         <div className="hidden md:block">
-          <a href="/#beta" className="inline-flex items-center justify-center h-11 px-6 rounded-full btn-primary">
+          <Link
+            to="/beta"
+            onClick={() => {
+              handleDownloadClick();
+              window.scrollTo(0, 0);
+            }}
+            className="inline-flex items-center justify-center h-11 px-6 rounded-full btn-primary"
+          >
             Download app
-          </a>
+          </Link>
         </div>
 
         <button
@@ -137,19 +152,16 @@ export function Header() {
                 )
               )}
 
-              <a
-                href="/#beta"
+              <Link
+                to="/beta"
                 className="mt-2 inline-flex items-center justify-center h-11 px-6 rounded-full btn-primary"
-                onClick={(e) => {
-                  if (location.pathname === "/") {
-                    e.preventDefault();
-                    document.querySelector("#beta")?.scrollIntoView({ behavior: "smooth" });
-                  }
-                  setIsMobileMenuOpen(false);
+                onClick={() => {
+                  handleDownloadClick();
+                  window.scrollTo(0, 0);
                 }}
               >
                 Download app
-              </a>
+              </Link>
             </div>
           </motion.div>
         )}

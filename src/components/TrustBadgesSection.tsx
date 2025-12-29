@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Shield, Database, Award, Lock, Microscope } from "lucide-react";
+import { Award, Database, Lock, Microscope, Shield } from "lucide-react";
 
 const badges = [
   { icon: Shield, label: "100% Secure" },
@@ -10,6 +10,8 @@ const badges = [
 ];
 
 export function TrustBadgesSection() {
+  const oddLast = badges.length % 2 === 1;
+
   return (
     <section className="py-10 sm:py-14 lg:py-16 bg-background border-y border-border/60">
       <div className="container">
@@ -24,8 +26,8 @@ export function TrustBadgesSection() {
             Trusted by conscious shoppers
           </p>
 
-          {/* Mobile: 2-column grid; md+: inline flex */}
-          <div className="grid grid-cols-2 gap-4 sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-8 md:gap-x-10 lg:gap-x-14">
+          {/* Mobile: centered grid; sm+: wrap */}
+          <div className="grid grid-cols-2 gap-x-4 gap-y-4 justify-items-center sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-10 sm:gap-y-4">
             {badges.map((badge, index) => (
               <motion.div
                 key={badge.label}
@@ -33,7 +35,9 @@ export function TrustBadgesSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.35, delay: index * 0.06 }}
-                className="flex items-center gap-2.5 group cursor-default"
+                className={`flex items-center gap-2.5 group cursor-default w-full max-w-[190px] justify-center sm:w-auto sm:max-w-none sm:justify-start ${
+                  oddLast && index === badges.length - 1 ? "col-span-2" : ""
+                }`}
               >
                 <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110 bg-secondary border border-border">
                   <badge.icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
