@@ -1,34 +1,30 @@
 import { motion } from "framer-motion";
-import { Star, Quote } from "lucide-react";
-
-import avatar1 from "@/assets/avatar-1.png";
-import avatar2 from "@/assets/avatar-2.png";
-import avatar3 from "@/assets/avatar-3.png";
+import { Star, Quote, User } from "lucide-react";
 
 const testimonials = [
   {
     quote:
       "I used to spend hours researching ingredients online. Now I just scan and get clear answers. It's become my go-to before buying any skincare.",
+    author: "Vennela",
     role: "Skincare Enthusiast",
     location: "Warangal",
     rating: 5,
-    avatar: avatar1,
   },
   {
     quote:
       "As someone with sensitive skin, knowing exactly what's in my products has been life-changing. I trust Purelytics completely.",
+    author: "Saanve",
     role: "Early Tester",
     location: "Warangal",
     rating: 5,
-    avatar: avatar2,
   },
   {
     quote:
       "The ingredient breakdown is so easy to understand. I finally know which products are actually safe for daily use.",
+    author: "Ashrad",
     role: "Beta User",
     location: "Hyderabad",
     rating: 5,
-    avatar: avatar3,
   },
 ];
 
@@ -59,7 +55,7 @@ export function TestimonialsSection() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
           {testimonials.map((testimonial, index) => (
             <motion.div
-              key={index}
+              key={testimonial.author}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -83,17 +79,15 @@ export function TestimonialsSection() {
                 "{testimonial.quote}"
               </p>
 
-              {/* Author */}
+              {/* Author - no image, just icon */}
               <div className="flex items-center gap-3">
-                <img
-                  src={testimonial.avatar}
-                  alt="User avatar"
-                  className="w-10 h-10 rounded-full object-cover border border-border"
-                />
+                <div className="w-10 h-10 rounded-full bg-primary/10 border border-border flex items-center justify-center">
+                  <User className="w-5 h-5 text-primary" />
+                </div>
                 <div>
-                  <p className="font-semibold text-foreground text-sm">{testimonial.role}</p>
+                  <p className="font-semibold text-foreground text-sm">{testimonial.author}</p>
                   <p className="text-muted-foreground text-xs">
-                    {testimonial.location}
+                    {testimonial.role} · {testimonial.location}
                   </p>
                 </div>
               </div>
