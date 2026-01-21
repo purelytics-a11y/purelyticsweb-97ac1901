@@ -9,7 +9,6 @@ const testimonials = [
   {
     quote:
       "I used to spend hours researching ingredients online. Now I just scan and get clear answers. It's become my go-to before buying any skincare.",
-    author: "Vennela",
     role: "Skincare Enthusiast",
     location: "Warangal",
     rating: 5,
@@ -18,7 +17,6 @@ const testimonials = [
   {
     quote:
       "As someone with sensitive skin, knowing exactly what's in my products has been life-changing. I trust Purelytics completely.",
-    author: "Saanve",
     role: "Early Tester",
     location: "Warangal",
     rating: 5,
@@ -26,9 +24,8 @@ const testimonials = [
   },
   {
     quote:
-      "The ingredient breakdown is so easy to understand. I finally know which products are actually safe for my family.",
-    author: "Ashrad",
-    role: "Parent & Beta User",
+      "The ingredient breakdown is so easy to understand. I finally know which products are actually safe for daily use.",
+    role: "Beta User",
     location: "Hyderabad",
     rating: 5,
     avatar: avatar3,
@@ -62,7 +59,7 @@ export function TestimonialsSection() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
           {testimonials.map((testimonial, index) => (
             <motion.div
-              key={testimonial.author}
+              key={index}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -90,13 +87,13 @@ export function TestimonialsSection() {
               <div className="flex items-center gap-3">
                 <img
                   src={testimonial.avatar}
-                  alt={testimonial.author}
+                  alt="User avatar"
                   className="w-10 h-10 rounded-full object-cover border border-border"
                 />
                 <div>
-                  <p className="font-semibold text-foreground text-sm">{testimonial.author}</p>
+                  <p className="font-semibold text-foreground text-sm">{testimonial.role}</p>
                   <p className="text-muted-foreground text-xs">
-                    {testimonial.role} · {testimonial.location}
+                    {testimonial.location}
                   </p>
                 </div>
               </div>
