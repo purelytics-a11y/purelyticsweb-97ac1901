@@ -12,6 +12,9 @@ import blogBabyProducts from "@/assets/blog-baby-products.jpg";
 import blogSulfates from "@/assets/blog-sulfates.jpg";
 import blogNaturalSynthetic from "@/assets/blog-natural-synthetic.jpg";
 import blogAllergens from "@/assets/blog-allergens.jpg";
+import blogSunscreen from "@/assets/blog-sunscreen.jpg";
+import blogEssentialOils from "@/assets/blog-essential-oils.jpg";
+import blogVitamins from "@/assets/blog-vitamins.jpg";
 
 const categories = [
   { label: "All", value: "all" },
@@ -85,6 +88,39 @@ const blogPosts = [
     image: blogAllergens,
     readTime: "6 min read",
     date: "Nov 28, 2025",
+    featured: false,
+  },
+  {
+    id: "sunscreen-ingredients",
+    title: "Sunscreen Ingredients: Chemical vs Mineral",
+    excerpt: "Understand the difference between chemical and mineral sunscreens, and which ingredients work best for your skin type.",
+    category: "ingredient-safety",
+    categoryLabel: "Ingredient Safety",
+    image: blogSunscreen,
+    readTime: "5 min read",
+    date: "Nov 25, 2025",
+    featured: false,
+  },
+  {
+    id: "essential-oils-safety",
+    title: "Essential Oils: Safe Use and Common Myths",
+    excerpt: "Essential oils are popular but not always safe. Learn about proper dilution, skin sensitivity, and which oils to avoid.",
+    category: "health-awareness",
+    categoryLabel: "Health Awareness",
+    image: blogEssentialOils,
+    readTime: "7 min read",
+    date: "Nov 22, 2025",
+    featured: false,
+  },
+  {
+    id: "vitamin-supplements-guide",
+    title: "Decoding Vitamin Supplement Labels",
+    excerpt: "Not all supplements are created equal. Learn how to read labels, understand bioavailability, and choose quality products.",
+    category: "product-analysis",
+    categoryLabel: "Product Analysis",
+    image: blogVitamins,
+    readTime: "6 min read",
+    date: "Nov 18, 2025",
     featured: false,
   },
 ];
